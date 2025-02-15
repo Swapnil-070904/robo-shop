@@ -3,7 +3,7 @@ name: Cart
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - 'cart/**'
       - '.github/workflows/cart.yaml'  # Include workflow file changes
