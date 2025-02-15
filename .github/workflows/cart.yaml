@@ -57,7 +57,7 @@ jobs:
 
     - name: Update tag in kubernetes deployment manifest
       run: |
-        sed -i "s/replaceTag/${{ github.run_id }}/g" EKS/helm/templates/cart.yaml
+        sed -i "s/replaceTag/${{ github.run_id }}/g" EKS/helm/templates/cart-deployment.yaml
 
     
     - name: Commit and push changes
