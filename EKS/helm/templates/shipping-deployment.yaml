@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: shipping
-        image: ak6805002/shipping:13354788295
+        image: ak6805002/shipping:13354989867
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
         - containerPort: 8080
