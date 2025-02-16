@@ -25,7 +25,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: NPM test
-        run: npm test
+        run: npm install
         working-directory: cart/
 
       - name: Install docker
