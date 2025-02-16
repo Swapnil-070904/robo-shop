@@ -14,11 +14,12 @@ jobs:
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
-              
+
             - name: Install Composer Dependencies
               run: |
                 cd ratings/
-                composer install --no-interaction --no-progress
+                composer init --name ratings/ratings --stability dev --no-interaction
+                composer install --no-interaction --no-suggest --no-progress
 
             - name: Check PHP Syntax (Lint)
               run: |
@@ -70,6 +71,7 @@ jobs:
           run: |
             git config --global user.email "ak6805002@gmail.com"
             git config --global user.name "Swapnil-070904"
+            git pull --rebase origin main
             git add EKS/helm/templates/ratings-deployment.yaml
             git commit -m "[CI]: Update ratings image tag"
             git push origin main -f

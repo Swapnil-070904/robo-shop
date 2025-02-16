@@ -63,6 +63,7 @@ jobs:
         run: |
           git config --global user.email "ak6805002@gmail.com"
           git config --global user.name "Swapnil-070904"
+          git pull --rebase origin main
           git add EKS/helm/templates/catalogue-deployment.yaml
           git commit -m "[CI]: Update catalogue image tag"
           git push origin main -f
