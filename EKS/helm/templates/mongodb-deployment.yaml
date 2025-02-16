@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: mongodb
-        image: {{ .Values.image.repo }}/mongodb:replaceTag
+        image: ak6805002/mongodb:13354989866
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
         - containerPort: 27017
