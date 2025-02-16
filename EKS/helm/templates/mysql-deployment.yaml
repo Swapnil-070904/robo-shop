@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: mysql
-        image: {{ .Values.image.repo }}/rs-mysql-db:replaceTag
+        image: ak6805002/sql:13354989861
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         # added for Istio
         securityContext:
