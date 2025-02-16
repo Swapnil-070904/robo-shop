@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: payment
-        image: {{ .Values.image.repo }}/payment:replaceTag
+        image: ak6805002/payment:13354989871
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         # agent networking access
         env:
