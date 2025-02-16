@@ -31,11 +31,10 @@ jobs:
             context: mongo/
             file: mongo/Dockerfile
             push: true
-            tags: ${{ secrets.DOCKER_USERNAME }}/mongodb:${{github.run_id}}}
+            tags: ${{ secrets.DOCKER_USERNAME }}/mongodb:${{github.run_id}}
 
     updatek8s:
         runs-on: ubuntu-latest
-
         needs: docker
 
         steps:
@@ -55,4 +54,4 @@ jobs:
             git config --global user.name "Swapnil-070904"
             git add EKS/helm/templates/mongodb-deployment.yaml
             git commit -m "[CI]: Update mongodb image tag"
-            git push origin main
+            git push origin main -f

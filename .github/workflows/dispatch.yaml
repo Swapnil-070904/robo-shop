@@ -13,13 +13,13 @@ jobs:
     runs-on: ubuntu-latest  
 
     steps:
+      - name: Checkout code 
+        uses: actions/checkout@v4
+
       - name: setup go
         uses: actions/setup-go@v2
         with:
           go-version: '1.23'
-
-      - name: Checkout code 
-        uses: actions/checkout@v4
 
       - name: setup app
         run: |
@@ -70,6 +70,6 @@ jobs:
         git config --global user.name "Swapnil-070904"
         git add EKS/helm/templates/dispatch-deployment.yaml
         git commit -m "[CI]: Update dispatch image tag"
-        git push origin main
+        git push origin main -f
   
   

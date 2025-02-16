@@ -30,7 +30,7 @@ jobs:
           context: payment/
           file: payment/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/payment:${{github.run_id}}}
+          tags: ${{ secrets.DOCKER_USERNAME }}/payment:${{github.run_id}}
 
   updatek8s:
       runs-on: ubuntu-latest
@@ -53,4 +53,4 @@ jobs:
           git config --global user.name "Swapnil-070904"
           git add EKS/helm/templates/payment-deployment.yaml
           git commit -m "[CI]: Update payment image tag"
-          git push origin main
+          git push origin main -f

@@ -31,7 +31,7 @@ jobs:
             context: mysql/
             file: mysql/Dockerfile
             push: true
-            tags: ${{ secrets.DOCKER_USERNAME }}/sql:${{github.run_id}}}
+            tags: ${{ secrets.DOCKER_USERNAME }}/sql:${{github.run_id}}
 
     updatek8s:
         runs-on: ubuntu-latest
@@ -45,7 +45,7 @@ jobs:
 
         - name: Update tag in kubernetes deployment manifest
           run: |
-            sed -i "s|image: .*|image: ${{ secrets.DOCKER_USERNAME }}/checkout:${{ github.run_id }}|"  EKS/helm/templates/mysql-deployment.yaml
+            sed -i "s|image: .*|image: ${{ secrets.DOCKER_USERNAME }}/sql:${{ github.run_id }}|"  EKS/helm/templates/mysql-deployment.yaml
         
         - name: Commit and push changes
           run: |
@@ -53,4 +53,4 @@ jobs:
             git config --global user.name "Swapnil-070904"
             git add EKS/helm/templates/mysql-deployment.yaml
             git commit -m "[CI]: Update sql image tag"
-            git push origin main
+            git push origin main -f
