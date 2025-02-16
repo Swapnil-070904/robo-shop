@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: dispatch
-        image: {{ .Values.image.repo }}/dispatch:replaceTag
+        image: ak6805002/dispatch:13354859364
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         env:
           # agent networking access
