@@ -1,0 +1,70 @@
+name: Catalogue
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'catalogue/**'  
+      - '.github/workflows/catalogue.yaml'  
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  
+
+    steps:
+      - name: Checkout code 
+        uses: actions/checkout@v4
+
+      - name: NPM install
+        run: npm install 
+
+  docker:
+    needs: build
+    name: Build and push Docker image
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install docker
+        uses: docker/setup-buildx-action@v1
+
+      - name: Docker login
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_TOKEN }}
+
+      - name: Docker build & push
+        uses: docker/build-push-action@v6
+        with:
+          context: catalogue/
+          file: catalogue/Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/catalogue:${{ github.run_id }}
+  
+  updatek8s:
+    needs: [build,docker]
+    name: Update tag in Kubernetes deployment manifest
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update tag in Kubernetes deployment manifest
+        run: |
+          sed -i "s|image: .*|image: ${{ secrets.DOCKER_USERNAME }}/catalogue:${{ github.run_id }}|" EKS/helm/templates/catalogue-deployment.yaml
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.email "ak6805002@gmail.com"
+          git config --global user.name "Swapnil-070904"
+          git add EKS/helm/templates/catalogue-deployment.yaml
+          git commit -m "[CI]: Update catalogue image tag"
+          git push origin main
+  

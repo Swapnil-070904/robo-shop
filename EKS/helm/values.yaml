@@ -2,7 +2,7 @@
 # Default is docker/robotshop/image:latest
 image:
   repo: ak6805002
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 # EUM configuration
 # Provide your key and set the endpoint
 # eum:
