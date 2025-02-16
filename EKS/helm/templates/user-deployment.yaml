@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: user
-        image: {{ .Values.image.repo }}/user:replaceTag
+        image: ak6805002/user:13354989863
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         env:
           # agent networking access
