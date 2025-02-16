@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: ratings
-        image: {{ .Values.image.repo }}/ratings:replaceTag
+        image: ak6805002/ratings:13354989869
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
         - containerPort: 80
