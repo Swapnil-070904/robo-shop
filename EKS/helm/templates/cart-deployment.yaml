@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: cart
-        image: {{ .Values.image.repo }}/cart:replaceTag
+        image: ak6805002/cart:13354989880
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         env:
           - name: INSTANA_AGENT_HOST
