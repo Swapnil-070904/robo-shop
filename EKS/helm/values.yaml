@@ -3,11 +3,7 @@
 image:
   repo: ak6805002
   pullPolicy: Always
-# EUM configuration
-# Provide your key and set the endpoint
-# eum:
-#   key: null
-#   url: https://eum-eu-west-1.instana.io
+
 
 redis:
   # Storage class to use with redis statefulset.
